@@ -2,7 +2,7 @@
   <Teleport to="body">
     <transition name="arrowDialog">
       <div class="arrow-dialog-backdrop" v-if="modelValue" @click="$emit('update:modelValue', false)">
-        <div id="dialog-main" class="arrow-dialog" :class="{ 'open': modelValue }" @click.stop="" @keyup.esc="$emit('update:modelValue', false)" tabindex="0">
+        <div ref="main" class="arrow-dialog" :class="{ 'open': modelValue }" @click.stop="" @keyup.esc="$emit('update:modelValue', false)" tabindex="0">
           <arrow-box>
             <div class="content">
               <a @click="$emit('update:modelValue', false)" class="close">
@@ -28,14 +28,14 @@ export default {
   mounted() {
     document.querySelector('html').style['overflow-y'] = this.modelValue ? 'hidden' : 'auto'
     document.querySelector('body').style['overflow-y'] = this.modelValue ? 'hidden' : 'auto'
-    const dialogMain = document.getElementById('dialog-main')
-    if (dialogMain) dialogMain.focus()
+    if (this.modelValue) this.$refs.main.focus()
   },
   watch: {
     modelValue: function (val) {
       // added overflow to html
       document.querySelector('html').style['overflow-y'] = val ? 'hidden' : 'auto'
       document.querySelector('body').style['overflow-y'] = val ? 'hidden' : 'auto'
+      if (val) this.$refs.main.focus()
     },
   },
 }
