@@ -2,7 +2,7 @@
   <Teleport to="body">
     <transition name="arrowDialog">
       <div class="arrow-dialog-backdrop" v-if="modelValue" @click="$emit('update:modelValue', false)">
-        <div class="arrow-dialog" :class="{ 'open': modelValue }" @click.stop="">
+        <div class="arrow-dialog" :class="{ 'open': modelValue }" @click.stop="" @keyup.esc="$emit('update:modelValue', false)" tabindex="0">
           <arrow-box>
             <div class="content">
               <a @click="$emit('update:modelValue', false)" class="close">
