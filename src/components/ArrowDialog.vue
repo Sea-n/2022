@@ -28,14 +28,14 @@ export default {
   mounted() {
     document.querySelector('html').style['overflow-y'] = this.modelValue ? 'hidden' : 'auto'
     document.querySelector('body').style['overflow-y'] = this.modelValue ? 'hidden' : 'auto'
-    if (this.modelValue) this.$refs.main.focus()
+    if (this.$refs.main) this.$refs.main.focus()
   },
   watch: {
     modelValue: function (val) {
       // added overflow to html
       document.querySelector('html').style['overflow-y'] = val ? 'hidden' : 'auto'
       document.querySelector('body').style['overflow-y'] = val ? 'hidden' : 'auto'
-      if (val) this.$refs.main.focus()
+      if (this.$refs.main) this.$refs.main.focus()
     },
   },
 }
